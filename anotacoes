@@ -132,3 +132,34 @@ vagrant reload
     # Rodando a app
         python manage.py runserver 0:8000
         http://192.168.33.10:8000
+
+# Expor o deamon do docker
+    sudo mkdir -p /etc/systemd/system/docker.service.d/
+    sudo vi /etc/systemd/system/docker.service.d/override.conf
+        [Service]
+        ExecStart=
+        ExecStart=/usr/bin/dockerd -H fd:// -H tcp://0.0.0.0:2376
+    sudo systemctl daemon-reload
+    sudo systemctl restart docker.service
+
+# Sugested Plugins
+# Instalando os plugins
+    Gerenciar Jenkins -> Gerenciar Plugins -> Disponíveis
+        # docker
+    Install without restart -> Depois reiniciar o jenkins
+Gerenciar Jenkins -> Configurar o sistema -> Nuvem
+    # Name: docker
+    # URI: tcp://127.0.0.1:2376
+    # Enabled
+# This project is parameterized: 
+    DOCKER_HOST
+    tcp://127.0.0.1:2376
+# Voltar no job criado na aula anterior
+    # Manter a mesma configuracao do GIT para desenvolvimento
+    # Build step 1: Executar Shell
+# Validando a sintaxe do Dockerfile
+docker run --rm -i hadolint/hadolint < Dockerfile
+    # Build step 2: Build/Publish Docker Image
+        Directory for Dockerfile: ./
+        Cloud: docker
+        Image: rafaelvzago/django_todolist_image_build
