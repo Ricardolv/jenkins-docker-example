@@ -371,7 +371,7 @@ Job: todo-list-desenvolvimento
         stages {
             stage('Carregando o ENV de desenvolvimento') {
                 steps {
-                    configFileProvider([configFile(fileId: '2ed9697c-45fc-4713-a131-53bdbeea2ae6', variable: 'env')]) {
+                    configFileProvider([configFile(fileId: '7d03108a-6aae-4cc2-9fca-ccc503f5ce15', variable: 'env')]) {
                         sh 'cat $env > .env'
                     }
                 }
